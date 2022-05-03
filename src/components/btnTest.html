@@ -1,0 +1,26 @@
+<html>
+<template id="btnTest">
+    <div class="p-4 border-b-fuchsia-500">
+        <button class="bg-fuchsia-500 p-3 w-8 text-center">Click</button>
+    </div>
+</template>
+
+<script>
+    class BtnTest extends HTMLElement {
+        constructor() {
+            super()
+            this.importDocument = document.currentScript.ownerDocument
+        }
+
+        connectedCallback() {
+            let shadowRoot = this.attachShadow({mode: 'open'})
+            const t = this.importDocument.querySelector('#btnTest')
+            const instance = t.content.cloneNode(true)
+            shadowRoot.appendChild(instance)
+        }
+    }
+    window.customElements.define('btn-test', BtnTest)
+
+</script>
+
+</html>
